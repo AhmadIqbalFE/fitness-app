@@ -8,8 +8,8 @@ export default function ProfileScreen() {
       <TopHeader greeting="Good Morning" name="Iqbal" />
       <View className="flex-1 items-center justify-center">
         <Text className="text-white/60 text-base">
-          Halaman Profile — belum ada di desain Figma, tinggal kamu isi
-          sendiri sesuai kebutuhan (edit profil, pengaturan, dll).
+          Halaman Profile — belum ada di desain Figma, tinggal kamu isi sendiri
+          sesuai kebutuhan (edit profil, pengaturan, dll).
         </Text>
       </View>
     </View>

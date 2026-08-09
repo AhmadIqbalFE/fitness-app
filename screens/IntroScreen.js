@@ -11,31 +11,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
-// Placeholder gambar workout — ganti dengan foto kamu sendiri.
-// Cara ganti ke gambar lokal: taruh file di folder assets/ lalu
-// pakai require("../assets/slide1.jpg") menggantikan uri di bawah.
+//Images Carousel
 const slides = [
   {
     id: 1,
-    image: {
-      uri: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
-    },
+    image: require("../assets/images/slide1.jpg"),
   },
   {
     id: 2,
-    image: { uri: "https://images.unsplash.com/photo-1550345332-09e3ac987658" },
+    image: require("../assets/images/slide2.jpg"),
   },
   {
     id: 3,
-    image: {
-      uri: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48",
-    },
+    image: require("../assets/images/slide3.jpg"),
   },
   {
     id: 4,
-    image: {
-      uri: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438",
-    },
+    image: require("../assets/images/slide4.jpg"),
   },
 ];
 
@@ -50,9 +42,6 @@ export default function IntroScreen({ onGetStarted }) {
 
   return (
     <View className="flex-1 bg-white">
-      {/* Carousel gambar — flex:1 artinya "isi semua sisa ruang
-          yang tidak dipakai bottom sheet di bawah". Jadi ukurannya
-          otomatis menyesuaikan, bukan dipaksa persentase tetap. */}
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -72,13 +61,10 @@ export default function IntroScreen({ onGetStarted }) {
         ))}
       </ScrollView>
 
-      {/* Bottom sheet — TIDAK pakai flex-1, jadi tingginya
-          otomatis mengikuti konten di dalamnya (dots + tagline +
-          paragraph + tombol). Ini yang menjamin tombol "Get Started"
-          selalu keliatan penuh di layar HP apa pun. */}
       <SafeAreaView
         edges={["bottom"]}
         className="bg-dark rounded-t-[32px] -mt-8"
+        style={{ height: 350 }}
       >
         <View className="px-6 pt-6 pb-4">
           {/* Dots indicator */}
@@ -94,24 +80,25 @@ export default function IntroScreen({ onGetStarted }) {
           </View>
 
           {/* Tagline */}
-          <Text className="text-white font-extrabold text-2xl leading-snug">
+          <Text className="text-white font-extrabold text-4xl leading-snug mt-4">
             Make your body healthier and{" "}
             <Text className="text-accent">stronger</Text>
           </Text>
 
           {/* Paragraph */}
-          <Text className="text-white/80 text-sm mt-2 leading-5">
+          <Text className="text-white/80 text-l mt-4 leading-5">
             Sport is a form of physical activity that is usually competitive
             with the aim of increasing physical abilities and skills
           </Text>
 
-          {/* Tombol Get Started */}
+          {/* Get Started */}
           <Pressable
             onPress={() => {
               console.log("Get Started ditekan!");
               onGetStarted();
             }}
             className="bg-accent rounded-full py-4 items-center mt-5"
+            activeOpacity={0.8}
           >
             <Text className="text-white font-semibold text-lg">
               Get Started
