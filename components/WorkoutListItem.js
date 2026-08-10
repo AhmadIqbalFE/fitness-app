@@ -1,22 +1,29 @@
-import React from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Pressable, Image } from "react-native";
 import { Heart } from "lucide-react-native";
+import AnimatedPressable from "./AnimatedPressable";
 
-// Satu baris item workout: gambar kecil, judul, jumlah tutorial,
-// durasi, dan tombol like. Dipakai berulang di Home Page.
+//Workout list item
 export default function WorkoutListItem({
   title,
+  image,
   tutorials,
   minutes,
   onPress,
 }) {
+  const [liked, setLiked] = useState(false);
+
   return (
-    <Pressable
+    <AnimatedPressable
       onPress={onPress}
       className="flex-row items-center bg-[#1a1a1a] border border-[#3a3838] rounded-2xl p-3 mb-3"
     >
       <View className="w-[60px] h-[60px] rounded-2xl bg-[#232222] items-center justify-center overflow-hidden">
-        <View className="w-10 h-10 bg-accent/30 rounded-xl" />
+        <Image
+          source={image}
+          style={{ width: "100%", height: "100%" }}
+          resizeMode="cover"
+        />
       </View>
 
       <View className="flex-1 ml-4">
@@ -27,8 +34,16 @@ export default function WorkoutListItem({
           <Text className="text-white/70 text-xs">{minutes} minutes</Text>
         </View>
       </View>
-
-      <Heart color="white" size={20} />
-    </Pressable>
+      <Pressable
+        onPress={() => setLiked((prev) => !prev)}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+      >
+        <Heart
+          color={liked ? "#ef4444" : "white"}
+          fill={liked ? "#ef4444" : "transparent"}
+          size={22}
+        />
+      </Pressable>
+    </AnimatedPressable>
   );
 }

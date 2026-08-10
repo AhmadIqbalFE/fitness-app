@@ -19,7 +19,10 @@ const Tab = createBottomTabNavigator();
 function MainTabs() {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        sceneContainerStyle: { backgroundColor: "#000000" },
+      }}
       tabBar={(props) => <BottomNavbar {...props} />}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -33,14 +36,25 @@ function MainTabs() {
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: "slide_from_right", // transisi geser halus khas mobile
+          gestureEnabled: true, // swipe dari tepi kiri untuk back
+          contentStyle: { backgroundColor: "#000000" }, // cegah kilatan putih saat transisi
+        }}
+      >
         <Stack.Screen name="Intro" component={IntroWrapper} />
-        <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen
+          name="MainTabs"
+          component={MainTabs}
+          options={{ animation: "slide_from_right", gestureEnabled: false }}
+        />
         {/* Training dibuka di atas tab bar, dari Home atau Schedule */}
         <Stack.Screen
           name="Training"
           component={TrainingScreen}
-          options={{ presentation: "card" }}
+          options={{ presentation: "card", animation: "slide_from_right" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -50,7 +64,5 @@ export default function AppNavigator() {
 // Wrapper supaya tombol "Get Started" di IntroScreen bisa
 // pindah ke MainTabs lewat navigation.replace
 function IntroWrapper({ navigation }) {
-  return (
-    <IntroScreen onGetStarted={() => navigation.replace("MainTabs")} />
-  );
+  return <IntroScreen onGetStarted={() => navigation.replace("MainTabs")} />;
 }

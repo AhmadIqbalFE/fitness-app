@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable, Image } from "react-native";
 import TopHeader from "../components/TopHeader";
 import WorkoutListItem from "../components/WorkoutListItem";
+import AnimatedPressable from "../components/AnimatedPressable";
 
 const categories = ["Full body", "Chest", "Shoulder"];
 
@@ -65,9 +66,9 @@ export default function HomeScreen({ navigation }) {
               <Text className="font-bold text-4xl">200</Text>
               <Text className="text-base"> step</Text>
             </Text>
-            <Pressable className="bg-white rounded-[10px] py-2 mt-3 items-center">
+            <AnimatedPressable className="bg-white rounded-[10px] py-2 mt-3 items-center">
               <Text className="text-black text-sm">Join challenge</Text>
-            </Pressable>
+            </AnimatedPressable>
           </View>
         </View>
 

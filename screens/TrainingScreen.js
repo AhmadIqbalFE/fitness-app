@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable, Image } from "react-native";
 import { ArrowLeft, Menu, Heart } from "lucide-react-native";
 
@@ -9,12 +9,14 @@ export default function TrainingScreen({ route, navigation }) {
     minutes = 60,
   } = route.params || {};
 
+  const [liked, setliked] = useState(false);
+
   return (
     <View className="flex-1 bg-black">
-      {/* Gambar workout di bagian atas */}
+      {/* Image description */}
       <View className="h-[45%] bg-[#333]">
         <Image
-          source={{ uri: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" }}
+          source={route.params?.image || require("../assets/images/img1.jpg")}
           className="w-full h-full"
           resizeMode="cover"
         />
@@ -29,24 +31,33 @@ export default function TrainingScreen({ route, navigation }) {
         </Pressable>
       </View>
 
-      {/* Deskripsi + tombol start */}
+      {/* Description */}
       <View className="flex-1 bg-[#1a1a1a] border border-[#3a3838] rounded-t-[30px] -mt-8 px-9 pt-8">
         <View className="flex-row items-center gap-3">
           <Text className="text-white text-sm">{tutorials} Tutorials</Text>
           <View className="w-1.5 h-1.5 rounded-full bg-white/50" />
           <Text className="text-white text-sm">{minutes} minutes</Text>
           <View className="flex-1" />
-          <Heart color="white" size={22} />
+          <Pressable
+            onPress={() => setliked((prev) => !prev)}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Heart
+              color={liked ? "#ef4444" : "white"}
+              fill={liked ? "#ef4444" : "transparent"}
+              size={22}
+            />
+          </Pressable>
         </View>
 
         <ScrollView className="mt-6" showsVerticalScrollIndicator={false}>
-          <Text className="text-white text-lg leading-relaxed">
+          <Text className="text-white text-lg leading-relaxed mt-5">
             {title} adalah latihan yang efektif untuk melatih kekuatan otot
             secara menyeluruh. Lakukan gerakan ini secara perlahan dan
-            terkontrol untuk hasil terbaik, jaga pernapasan tetap teratur,
-            dan hentikan jika merasa nyeri berlebih. Latihan ini cocok
-            untuk pemula maupun yang sudah berpengalaman, dan dapat
-            disesuaikan intensitasnya sesuai kemampuan masing-masing.
+            terkontrol untuk hasil terbaik, jaga pernapasan tetap teratur, dan
+            hentikan jika merasa nyeri berlebih. Latihan ini cocok untuk pemula
+            maupun yang sudah berpengalaman, dan dapat disesuaikan intensitasnya
+            sesuai kemampuan masing-masing.
           </Text>
         </ScrollView>
 
