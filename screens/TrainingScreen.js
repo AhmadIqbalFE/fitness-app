@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable, Image } from "react-native";
 import { ArrowLeft, Menu, Heart } from "lucide-react-native";
+import AnimatedPressable from "../components/AnimatedPressable";
 
 export default function TrainingScreen({ route, navigation }) {
   const {
@@ -20,15 +21,15 @@ export default function TrainingScreen({ route, navigation }) {
           className="w-full h-full"
           resizeMode="cover"
         />
-        <Pressable
+        <AnimatedPressable
           onPress={() => navigation.goBack()}
           className="absolute top-10 left-6 w-[54px] h-[54px] rounded-full bg-black/40 items-center justify-center"
         >
           <ArrowLeft color="white" size={24} />
-        </Pressable>
-        <Pressable className="absolute top-10 right-6 w-[54px] h-[54px] rounded-full bg-black/40 items-center justify-center">
+        </AnimatedPressable>
+        <AnimatedPressable className="absolute top-10 right-6 w-[54px] h-[54px] rounded-full bg-black/40 items-center justify-center">
           <Menu color="white" size={24} />
-        </Pressable>
+        </AnimatedPressable>
       </View>
 
       {/* Description */}

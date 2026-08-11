@@ -23,7 +23,7 @@ export default function BottomNavbar({ state, navigation }) {
           <Pressable
             key={route.key}
             onPress={() => navigation.navigate(route.name)}
-            className={`items-center justify-center rounded-full ${
+            className={`items-center justify-center rounded-[23px] ${
               isFocused ? "bg-accent w-16 h-16" : "w-12 h-12"
             }`}
           >
